@@ -30,14 +30,8 @@ jobs:
         id: set-flag
         run: |
           export DOCKER_CLI_EXPERIMENTAL=enabled
-          version="latest"
-          repo="treehouses/webssh-tags:${{ matrix.arch }}"
-          case ${{ matrix.arch }} in
-            amd64) : "treehouses/alpine:$version" ;;
-            arm) : "treehouses/alpine:$version" ;;
-            arm64) : "treehouses/alpine:$version" ;;
-          esac
-          base="$_"
+          repo="neethumohan1212/webssh:latest"
+          base="neethumohan1212/alpine-tags:${{ matrix.arch }}"
           docker pull -q $base &>/dev/null
           docker pull -q $repo &>/dev/null
           basesha=$(docker image inspect $base | jq --raw-output '.[0].RootFS.Layers|.[]')
@@ -66,14 +60,8 @@ jobs:
         id: set-build
         run: |
           export DOCKER_CLI_EXPERIMENTAL=enabled
-          version="latest"
-          case ${{ matrix.arch }} in
-            amd64) : "treehouses/alpine:$version" ;;
-            arm) : "treehouses/alpine:$version" ;;
-            arm64) : "treehouses/alpine:$version" ;;
-          esac
-          image="$_"
-          repo="treehouses/webssh-tags"
+          repo="neethumohan1212/webssh:latest"
+          image="neethumohan1212/alpine-tags:${{ matrix.arch }}""
           dest="$repo:${{ matrix.arch }}"
           date="$(date +%Y%m%d%H%M)"
           echo "::set-output name=build::true"
