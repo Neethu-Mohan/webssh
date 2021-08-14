@@ -30,7 +30,7 @@ jobs:
         run: |
           export DOCKER_CLI_EXPERIMENTAL=enabled
           version="latest"
-          repo="neethumohan1212/webssh-tags:${{ matrix.arch }}"
+          repo="treehouses/webssh-tags:${{ matrix.arch }}"
           case ${{ matrix.arch }} in
             amd64) : "neethumohan1212/alpine:$version" ;;
             arm) : "neethumohan1212/alpine:$version" ;;
