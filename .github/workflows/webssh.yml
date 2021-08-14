@@ -30,11 +30,11 @@ jobs:
         run: |
           export DOCKER_CLI_EXPERIMENTAL=enabled
           version="latest"
-          repo="treehouses/webssh-tags:${{ matrix.arch }}"
+          repo="neethumohan1212/webssh-tags:${{ matrix.arch }}"
           case ${{ matrix.arch }} in
-            amd64) : "neethumohan1212/alpine:$version" ;;
-            arm) : "neethumohan1212/alpine:$version" ;;
-            arm64) : "neethumohan1212/alpine:$version" ;;
+            amd64) : "treehouses/alpine:$version" ;;
+            arm) : "treehouses/alpine:$version" ;;
+            arm64) : "treehouses/alpine:$version" ;;
           esac
           base="$_"
           docker pull -q $base &>/dev/null
