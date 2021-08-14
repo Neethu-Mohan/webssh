@@ -44,3 +44,19 @@ jobs:
           reposha=$(docker image inspect $repo | jq --raw-output '.[0].RootFS.Layers|.[]')
           echo "base sha:$basesha repo sha:$reposha"
           [[ $reposha == *$basesha* ]] && echo "no changes" || echo "::set-output name=flag::true"
+  images:
+    needs: compare
+    runs-on: ubuntu-latest
+    outputs:
+      build: ${{ steps.set-build.outputs.build }}
+        strategy:
+      fail-fast: false
+      matrix:
+        arch: [amd64, arm, arm64]
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+      - name: container registries
+        run: |
+          docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+          docker login docker.io -u ${{ secrets.DOCKERUSERNAME }} -p ${{ secrets.DOCKERAPIKEY }}
