@@ -25,7 +25,6 @@ jobs:
       - name: container registries
         run: |
           docker login docker.io -u ${{ secrets.DOCKERUSERNAME }} -p ${{ secrets.DOCKERAPIKEY }}
-          docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
       - name: compare image
         id: set-flag
         run: |
