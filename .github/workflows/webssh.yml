@@ -66,23 +66,18 @@ jobs:
         id: set-build
         run: |
           export DOCKER_CLI_EXPERIMENTAL=enabled
-          version="version"
+          version="latest"
           case ${{ matrix.arch }} in
             amd64) : "treehouses/alpine:$version" ;;
             arm) : "treehouses/alpine:$version" ;;
             arm64) : "treehouses/alpine:$version" ;;
           esac
           image="$_"
-          repo="treehouses/alpine-tags"
+          repo="treehouses/webssh-tags"
           dest="$repo:${{ matrix.arch }}"
           date="$(date +%Y%m%d%H%M)"
           echo "::set-output name=build::true"
-          
-          
-          
-          
-          
-          # docker build -t ghcr.io/$dest --build-arg IMAGE=$image . 
+          docker build -t ghcr.io/$dest --build-arg IMAGE=$image . 
           # docker tag ghcr.io/$dest docker.io/$dest
           # docker tag ghcr.io/$dest ghcr.io/$dest-$date
           # docker tag docker.io/$dest docker.io/$dest-$date
