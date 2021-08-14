@@ -60,3 +60,32 @@ jobs:
         run: |
           docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
           docker login docker.io -u ${{ secrets.DOCKERUSERNAME }} -p ${{ secrets.DOCKERAPIKEY }}
+      - name: docker image
+        if: ${{ needs.compare.outputs.flag }}
+        id: set-build
+        run: |
+          export DOCKER_CLI_EXPERIMENTAL=enabled
+          version="version"
+          case ${{ matrix.arch }} in
+            amd64) : "treehouses/alpine:$version" ;;
+            arm) : "treehouses/alpine:$version" ;;
+            arm64) : "treehouses/alpine:$version" ;;
+          esac
+          image="$_"
+          repo="treehouses/alpine-tags"
+          dest="$repo:${{ matrix.arch }}"
+          date="$(date +%Y%m%d%H%M)"
+          echo "::set-output name=build::true"
+          
+          
+          
+          
+          
+          # docker build -t ghcr.io/$dest --build-arg IMAGE=$image . 
+          # docker tag ghcr.io/$dest docker.io/$dest
+          # docker tag ghcr.io/$dest ghcr.io/$dest-$date
+          # docker tag docker.io/$dest docker.io/$dest-$date
+          # docker push --all-tags ghcr.io/$repo
+          # docker push --all-tags docker.io/$repo
+          # docker images
+          # echo "::set-output name=build::true"
