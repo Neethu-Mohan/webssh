@@ -30,7 +30,7 @@ jobs:
         id: set-flag
         run: |
           export DOCKER_CLI_EXPERIMENTAL=enabled
-          repo="neethumohan1212/webssh:latest"
+          repo="neethumohan1212/webssh-tags:${{ matrix.arch }}"
           base="neethumohan1212/alpine-tags:${{ matrix.arch }}"
           docker pull -q $base &>/dev/null
           docker pull -q $repo &>/dev/null
