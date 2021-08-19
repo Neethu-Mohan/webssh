@@ -6,6 +6,11 @@ on:
       - master
       - main
   workflow_dispatch:
+    inputs:
+      buildtype:
+        description: 'Build by "force" or on "change"'
+        required: true
+        default: 'force'
   repository_dispatch:
     types: webssh
 
@@ -30,8 +35,8 @@ jobs:
         id: set-flag
         run: |
           export DOCKER_CLI_EXPERIMENTAL=enabled
-          repo="neethumohan1212/webssh-tags:${{ matrix.arch }}"
-          base="neethumohan1212/alpine-tags:${{ matrix.arch }}"
+          repo="neethumohan1212/webssh-tags"
+          base="neethumohan1212/alpine-tags"
           docker pull -q $base &>/dev/null
           #docker pull -q $repo &>/dev/null
           #basesha=$(docker image inspect $base | jq --raw-output '.[0].RootFS.Layers|.[]')
