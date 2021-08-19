@@ -39,10 +39,10 @@ jobs:
           base="neethumohan1212/alpine-tags:${{ matrix.arch }}"
           docker pull -q $repo &>/dev/null
           docker pull -q $base &>/dev/null
-          #basesha=$(docker image inspect $base | jq --raw-output '.[0].RootFS.Layers|.[]')
-          #reposha=$(docker image inspect $repo | jq --raw-output '.[0].RootFS.Layers|.[]')
-          #echo "base sha:$basesha repo sha:$reposha"
-          #[[ $reposha == *$basesha* ]] && echo "no changes" || echo "::set-output name=flag::true"
+          basesha=$(docker image inspect $base | jq --raw-output '.[0].RootFS.Layers|.[]')
+          reposha=$(docker image inspect $repo | jq --raw-output '.[0].RootFS.Layers|.[]')
+          echo "base sha:$basesha repo sha:$reposha"
+          [[ $reposha == *$basesha* ]] && echo "no changes" || echo "::set-output name=flag::true"
 
   # images:
   #   needs: compare
