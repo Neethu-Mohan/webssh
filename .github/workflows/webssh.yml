@@ -60,14 +60,14 @@ jobs:
         run: |
           docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
           docker login docker.io -u ${{ secrets.DOCKERUSERNAME }} -p ${{ secrets.DOCKERAPIKEY }}
-       - name: docker image
-         if: ${{ needs.compare.outputs.flag }}
-         id: set-build
-         run: |
-           export DOCKER_CLI_EXPERIMENTAL=enabled
-           repo="neethumohan1212/webssh-tags"
-           image="neethumohan1212/alpine-tags:${{ matrix.arch }}"
-           dest="$repo:${{ matrix.arch }}"
+      - name: docker image
+        if: ${{ needs.compare.outputs.flag }}
+        id: set-build
+        run: |
+          export DOCKER_CLI_EXPERIMENTAL=enabled
+          repo="neethumohan1212/webssh-tags"
+          image="neethumohan1212/alpine-tags:${{ matrix.arch }}"
+          dest="$repo:${{ matrix.arch }}"
           #  date="$(date +%Y%m%d%H%M)"
           #  echo "::set-output name=build::true"
           #  docker build -t ghcr.io/$dest --build-arg IMAGE=$image . 
