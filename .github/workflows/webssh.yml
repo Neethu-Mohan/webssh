@@ -68,16 +68,16 @@ jobs:
            repo="neethumohan1212/webssh-tags"
            image="neethumohan1212/alpine-tags:${{ matrix.arch }}"
            dest="$repo:${{ matrix.arch }}"
-           date="$(date +%Y%m%d%H%M)"
-           echo "::set-output name=build::true"
-           docker build -t ghcr.io/$dest --build-arg IMAGE=$image . 
-           docker tag ghcr.io/$dest docker.io/$dest
-           docker tag ghcr.io/$dest ghcr.io/$dest-$date
-           docker tag docker.io/$dest docker.io/$dest-$date
-           docker push --all-tags ghcr.io/$repo
-           docker push --all-tags docker.io/$repo
-           docker images
-           echo "::set-output name=build::true"
+          #  date="$(date +%Y%m%d%H%M)"
+          #  echo "::set-output name=build::true"
+          #  docker build -t ghcr.io/$dest --build-arg IMAGE=$image . 
+          #  docker tag ghcr.io/$dest docker.io/$dest
+          #  docker tag ghcr.io/$dest ghcr.io/$dest-$date
+          #  docker tag docker.io/$dest docker.io/$dest-$date
+          #  docker push --all-tags ghcr.io/$repo
+          #  docker push --all-tags docker.io/$repo
+          #  docker images
+          #  echo "::set-output name=build::true"
 
   # manifests:
   #   needs: images
